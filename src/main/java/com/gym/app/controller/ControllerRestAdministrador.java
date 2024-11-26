@@ -25,6 +25,7 @@ public class ControllerRestAdministrador {
 		return administradorRepository.findAll();
 
 	}
+	
 
 	@GetMapping("/{id}")
 	public Administrador getAdministradorById(@PathVariable String id) {
@@ -53,4 +54,5 @@ public class ControllerRestAdministrador {
 		administradorRepository.deleteById(id);
 		return administrador;
 	}
+	
 }

@@ -1,19 +1,26 @@
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerRestAdministrador.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerRestEntrenador.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerRestFisioterapeuta.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerRestUsuario.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerWebAdministrador.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerWebCompartido.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerWebEntrenador.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerWebFisioterapeuta.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\controller\ControllerWebUsuario.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\entity\Administrador.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\entity\Entrenador.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\entity\Fisioterapeuta.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\entity\Usuario.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\exception\NotFoundException.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\GymApplication.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\repository\AdministradorRepository.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\repository\EntrenadorRepository.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\repository\FisioterapeutaRepository.java
-C:\Users\Luz Zafra\Desktop\proyectosSpring\Gym\src\main\java\com\gym\app\repository\UsuarioRepository.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerRestAdministrador.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerRestCitasFisio.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerRestClase.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerRestEntrenador.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerRestFisioterapeuta.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerRestUsuario.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerWebAdministrador.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerWebClase.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerWebCompartido.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerWebEntrenador.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerWebFisioterapeuta.java
+D:\Spring\Gym\src\main\java\com\gym\app\controller\ControllerWebUsuario.java
+D:\Spring\Gym\src\main\java\com\gym\app\entity\Administrador.java
+D:\Spring\Gym\src\main\java\com\gym\app\entity\CitasFisio.java
+D:\Spring\Gym\src\main\java\com\gym\app\entity\Clase.java
+D:\Spring\Gym\src\main\java\com\gym\app\entity\Entrenador.java
+D:\Spring\Gym\src\main\java\com\gym\app\entity\Fisioterapeuta.java
+D:\Spring\Gym\src\main\java\com\gym\app\entity\Usuario.java
+D:\Spring\Gym\src\main\java\com\gym\app\exception\NotFoundException.java
+D:\Spring\Gym\src\main\java\com\gym\app\GymApplication.java
+D:\Spring\Gym\src\main\java\com\gym\app\repository\AdministradorRepository.java
+D:\Spring\Gym\src\main\java\com\gym\app\repository\CitasFisioRepository.java
+D:\Spring\Gym\src\main\java\com\gym\app\repository\ClaseRepository.java
+D:\Spring\Gym\src\main\java\com\gym\app\repository\EntrenadorRepository.java
+D:\Spring\Gym\src\main\java\com\gym\app\repository\FisioterapeutaRepository.java
+D:\Spring\Gym\src\main\java\com\gym\app\repository\UsuarioRepository.java

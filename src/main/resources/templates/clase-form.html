@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear una clase</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Crea una clase</h1>
+        <form th:action="@{/clases/guardar}" th:object="${clase}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Nombre de la clase" required>
+            </div>
+            <div class="form-group">
+                <label for="tipoDeClase">Tipo de Clase</label>
+                <input type="text" class="form-control" id="tipoDeClase" th:field="*{tipoDeClase}" placeholder="Tipo de clase" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaHora">Fecha y Hora</label>
+                <input type="datetime-local" class="form-control" id="fechaHora" th:field="*{hora}" required>
+                <small class="form-text text-muted">Seleccione una fecha y hora posterior al momento actual.</small>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a th:href="@{/clases}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+
+    <script>
+        // Configurar el campo de fecha y hora para no permitir valores anteriores al momento actual
+        const fechaHoraInput = document.getElementById('fechaHora');
+
+        function establecerMinimo() {
+            const ahora = new Date();
+            const year = ahora.getFullYear();
+            const month = String(ahora.getMonth() + 1).padStart(2, '0'); // Mes en formato de 2 dígitos
+            const day = String(ahora.getDate()).padStart(2, '0'); // Día en formato de 2 dígitos
+            const hours = String(ahora.getHours()).padStart(2, '0'); // Horas en formato de 2 dígitos
+            const minutes = String(ahora.getMinutes()).padStart(2, '0'); // Minutos en formato de 2 dígitos
+
+            // Construir la fecha mínima en formato ISO para datetime-local
+            const minimo = `${year}-${month}-${day}T${hours}:${minutes}`;
+            fechaHoraInput.min = minimo;
+        }
+
+        // Establecer la fecha mínima al cargar la página
+        establecerMinimo();
+
+        // Actualizar la fecha mínima cada vez que el usuario intente cambiarla
+        fechaHoraInput.addEventListener('focus', establecerMinimo);
+    </script>
+</body>
+</html>

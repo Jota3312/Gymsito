@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <!-- Enlaces a los archivos CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <!-- Barra de tareas -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-center">Registros de Usuarios</h1>
+            <div>
+                <a th:href="@{/administrador/usuario/crear}" class="btn btn-primary">Agregar Usuario</a>
+                <a th:href="@{/administrador/index}" class="btn btn-secondary">Atrás</a>
+            </div>
+        </div>
+
+        <!-- Barra de búsqueda -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar por nombre" />
+            </div>
+        </div>
+
+        <!-- Lista de usuarios -->
+        <div class="row" id="usuariosContainer">
+            <!-- Ciclo de registros de Usuarios -->
+            <div th:each="usuario : ${usuarios}" class="col-md-4 usuario-card">
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">
+                        Usuario: <span th:text="${usuario.nombres} + ' ' + ${usuario.apellidos}" class="usuario-nombre"></span>
+                    </div>
+					<div class="card-body">
+					                        <p><strong>ID:</strong> <span th:text="${usuario.id}"></span></p>
+					                        <p><strong>Usuario:</strong> <span th:text="${usuario.usuario}"></span></p>
+					                        <p><strong>Contraseña:</strong> <span th:text="${usuario.contrasena}"></span></p>
+					                        <p><strong>Documento:</strong> <span th:text="${usuario.documento}"></span></p>
+					                        <p><strong>Nombres:</strong> <span th:text="${usuario.nombres}"></span></p>
+					                        <p><strong>Apellidos:</strong> <span th:text="${usuario.apellidos}"></span></p>
+					                        <p><strong>Correo Electrónico:</strong> <span th:text="${usuario.correo}"></span></p>
+					                        <p><strong>Número Telefónico:</strong> <span th:text="${usuario.telefono}"></span></p>
+					                        <p><strong>Peso:</strong> <span th:text="${usuario.peso} + ' kg'"></span></p>
+					                        <p><strong>Altura:</strong> <span th:text="${usuario.altura} + ' m'"></span></p>
+					                        <div class="btn-group" role="group" aria-label="Acciones">
+
+                            <a th:href="@{/administrador/usuario/edit/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
+                            <a th:href="@{/administrador/usuario/delete/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de no resultados -->
+        <div id="noResultsMessage" class="text-center text-danger" style="display: none;">
+            <h4>No se encontraron resultados</h4>
+        </div>
+    </div>
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script para la búsqueda -->
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            const userCards = document.querySelectorAll('.usuario-card');
+            let hasResults = false;
+
+            userCards.forEach(card => {
+                const userName = card.querySelector('.usuario-nombre').textContent.toLowerCase();
+                if (userName.includes(searchValue)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Mostrar o esconder el mensaje de no resultados
+            document.getElementById('noResultsMessage').style.display = hasResults ? 'none' : 'block';
+        });
+    </script>
+</body>
+
+</html>
