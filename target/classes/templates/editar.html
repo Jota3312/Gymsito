@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Información</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Editar Información</h1>
+        <form id="editar-form">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo</label>
+                <input type="email" id="correo" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="peso">Peso (kg)</label>
+                <input type="number" id="peso" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="altura">Altura (m)</label>
+                <input type="number" id="altura" class="form-control">
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-success" onclick="guardarCambios()">Guardar Información</button>
+                <a href="/usuario/perfil" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        const usuarioId = "11"; // Reemplazar con la lógica del ID de usuario real
+
+        // Cargar datos actuales en el formulario
+        fetch(`/api/usuarios/${usuarioId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("nombre").value = data.nombres;
+                document.getElementById("apellido").value = data.apellidos;
+                document.getElementById("correo").value = data.correo;
+                document.getElementById("telefono").value = data.telefono;
+                document.getElementById("peso").value = data.peso;
+                document.getElementById("altura").value = data.altura;
+            })
+            .catch(error => console.error("Error al cargar los datos:", error));
+
+        // Guardar cambios
+        function guardarCambios() {
+            const datos = {
+                nombres: document.getElementById("nombre").value,
+                apellidos: document.getElementById("apellido").value,
+                correo: document.getElementById("correo").value,
+                telefono: document.getElementById("telefono").value,
+                peso: parseFloat(document.getElementById("peso").value),
+                altura: parseFloat(document.getElementById("altura").value),
+            };
+
+            fetch(`/api/usuarios/${usuarioId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datos),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Información actualizada con éxito.");
+                        window.location.href = "/usuario/perfil";
+                    } else {
+                        throw new Error("Error al guardar los cambios.");
+                    }
+                })
+                .catch(error => console.error("Error al guardar los cambios:", error));
+        }
+    </script>
+</body>
+</html>

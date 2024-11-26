@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Citas</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Listado de Citas</h1>
+		<a th:href="@{/fisioterapeuta/index}" class="btn btn-primary mt-3">Atras</a> <p></p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Hora</th>
+                    <th>Fecha</th>
+                    <th>Fisioterapeuta</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="citas-container"></tbody>
+        </table>
+    </div>
+
+	<script>
+	    // Obtener citas del backend
+	    fetch('/api/citas')
+	        .then(response => response.json())
+	        .then(data => {
+	            const container = document.getElementById('citas-container');
+	            data.forEach(cita => {
+	                const row = document.createElement('tr');
+	                row.innerHTML = `
+	                    <td>${cita.nombre}</td>
+	                    <td>${cita.hora}</td>
+	                    <td>${cita.fecha}</td>
+	                    <td>${cita.fisioACargo}</td>
+	                    <td id="estado-${cita.id}">${cita.estado || "Pendiente"}</td>
+	                    <td>
+	                        <button class="btn btn-success btn-sm" onclick="marcarConcurrida('${cita.id}')">✔</button>
+	                        <button class="btn btn-danger btn-sm" onclick="cancelarCita('${cita.id}')">X</button>
+	                    </td>
+	                `;
+	                container.appendChild(row);
+	            });
+	        });
+
+	    // Marcar una cita como concurrida y eliminarla
+	    function marcarConcurrida(citaId) {
+	        if (confirm("¿La cita ocurrió con normalidad?")) {
+	            fetch(`/api/citas/${citaId}/estado?estado=Concurrida`, { method: 'PUT' })
+	                .then(response => {
+	                    if (response.ok) {
+	                        eliminarCita(citaId); // Eliminar la cita después de actualizar el estado
+	                    } else {
+	                        alert("Error al actualizar el estado");
+	                    }
+	                });
+	        }
+	    }
+
+	    // Eliminar una cita
+	    function eliminarCita(citaId) {
+	        fetch(`/api/citas/${citaId}`, { method: 'DELETE' })
+	            .then(response => {
+	                if (response.ok) {
+	                    document.getElementById(`estado-${citaId}`).closest('tr').remove();
+	                } else {
+	                    alert("Error al eliminar la cita");
+	                }
+	            });
+	    }
+
+	    // Cancelar una cita (función para el botón X)
+	    function cancelarCita(citaId) {
+	        if (confirm("¿El usuario no se presento a la cita?")) {
+	            eliminarCita(citaId);
+	        }
+	    }
+	</script>
+
+</body>
+</html>

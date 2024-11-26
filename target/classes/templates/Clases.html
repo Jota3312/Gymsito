@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Clases</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Listado de Clases</h1>
+        <div class="d-flex justify-content-between mb-3">
+            <a th:href="@{/entrenador/index}" class="btn btn-primary">Atrás</a>
+            <a th:href="@{/clases/crear}" class="btn btn-success">Añadir Clase</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo de Clase</th>
+                    <th>Dia y Hora</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="clase : ${clases}">
+                    <td th:text="${clase.nombre}"></td>
+                    <td th:text="${clase.tipoDeClase}"></td>
+                    <td th:text="${clase.hora}"></td>
+                    <td>
+                        <a th:href="@{/clases/editar/{id}(id=${clase.id})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/clases/eliminar/{id}(id=${clase.id})}" class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Estás seguro de eliminar esta clase?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

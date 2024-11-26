@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Fisioterapeuta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" href="../img/iconoweb.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+		body {
+		           background: url('https://img.freepik.com/fotos-premium/gimnasio-pelota-azul-mancuerna-azul-suelo_693425-1128.jpg') no-repeat center center fixed;
+		           background-size: cover;
+		           font-family: 'Poppins', sans-serif;
+		           display: flex;
+		           align-items: center;
+		           justify-content: center;
+		           height: 100vh;
+		           margin: 0;
+		       }
+		       .container {
+		           max-width: 400px;
+		           width: 100%;
+		           background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+		           padding: 30px;
+		           border-radius: 8px;
+		           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+		       }
+		       .form-heading {
+		           text-align: center;
+		           font-weight: 600;
+		           color: #333;
+		           margin-bottom: 20px;
+		           font-size: 1.8em;
+		       }
+		       .input-field {
+		           background-color: #f1f1f1;
+		           border: none;
+		           border-radius: 4px;
+		           height: 45px;
+		           padding-left: 10px;
+		       }
+		       .input-field:focus {
+		           border: 2px solid #007bff;
+		           box-shadow: none;
+		           outline: none;
+		       }
+		       .btn-custom {
+		           width: 100%;
+		           background-color: #007bff;
+		           border: none;
+		           color: white;
+		           padding: 10px;
+		           font-size: 1em;
+		           border-radius: 4px;
+		           transition: 0.3s;
+		       }
+		       .btn-custom:hover {
+		           background-color: #0056b3;
+		       }
+		       .forgot-password, .btn-regresar {
+		           display: block;
+		           color: #007bff;
+		           margin-top: 15px;
+		           font-size: 0.9em;
+		       }
+		       .forgot-password:hover, .btn-regresar:hover {
+		           text-decoration: underline;
+		           color: #0056b3;
+		       }
+		       .error-message {
+		           color: red;
+		           text-align: center;
+		           margin-bottom: 10px;
+		           font-weight: 500;
+		       }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="form-heading">Iniciar Sesión Fisioterapeuta</h2>
+        <div th:if="${error}" class="error-message">
+            Usuario o contraseña incorrectos
+        </div>
+        <form th:action="@{/fisioterapeuta/logear}" method="post">
+            <div class="form-group mb-3">
+                <label for="usuario" class="form-label">Nombre de Usuario</label>
+                <input type="text" class="form-control input-field" id="usuario" name="usuario" placeholder="Ingrese su nombre de usuario" required>
+            </div>
+            <div class="form-group mb-4">
+                <label for="contrasena" class="form-label">Contraseña</label>
+                <input type="password" class="form-control input-field" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Login</button>
+            <div class="text-center">
+				<br>
+				<a th:href="@{/}" class="btn btn-custom">Regresar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

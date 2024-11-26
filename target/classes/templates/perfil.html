@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Mi Perfil</h1>
+        <div th:if="${error}" class="alert alert-danger text-center">
+            <p th:text="${error}"></p>
+        </div>
+        <table class="table table-bordered" th:if="${usuario != null}">
+            <tbody>
+                <tr>
+                    <th>Nombre</th>
+                    <td th:text="${usuario.nombres}">Nombre</td>
+                </tr>
+                <tr>
+                    <th>Apellido</th>
+                    <td th:text="${usuario.apellidos}">Apellido</td>
+                </tr>
+                <tr>
+                    <th>Correo</th>
+                    <td th:text="${usuario.correo}">Correo</td>
+                </tr>
+                <tr>
+                    <th>Teléfono</th>
+                    <td th:text="${usuario.telefono}">Teléfono</td>
+                </tr>
+                <tr>
+                    <th>Peso</th>
+                    <td th:text="${usuario.peso} + ' kg'">Peso</td>
+                </tr>
+                <tr>
+                    <th>Altura</th>
+                    <td th:text="${usuario.altura} + ' m'">Altura</td>
+                </tr>
+            </tbody>
+        </table>
+       
+        <div class="text-center">
+            <a href="/usuario/index" class="btn btn-primary">Regresar a Inicio</a>
+        </div>
+    </div>
+</body>
+</html>
